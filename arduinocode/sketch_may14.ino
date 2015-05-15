@@ -33,7 +33,7 @@ void setup() {
   }
   
 }
-bool runOnce = true;
+bool runOnce = false;
 unsigned long startTime;
 unsigned long time; 
 unsigned long elapsedTime;
@@ -43,7 +43,7 @@ void loop() {
 
   
   
-  if(analogRead(2) == 0){
+  if(analogRead(2) == 0 && !runOnce){
     timerOn = true;
     startTime = millis();
     digitalWrite(8,LOW);
@@ -55,6 +55,7 @@ void loop() {
     Serial.println(elapsedTime);
     if(analogRead(3) == 0) {
       digitalWrite(4,LOW);
+	  runOnce = true;
       break;
     }
   }
